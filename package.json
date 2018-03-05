@@ -1,0 +1,21 @@
+{
+    "private": true,
+    "name": "plain-server",
+    "version": "1.0.0",
+    "description": "Simple server example.",
+    "license": "MIT",
+    "keywords": [],
+    "homepage": [],
+    "repository": "https://github.com/JimvandeVen/static-file-server",
+    "bugs": [],
+    "author": "Jim van de Ven <jimvandeven_1@hotmail.com>",
+    "contributors": [
+      "Jim van de Ven <jimvandeven_1@hotmail.com>",
+      "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {
+        "start": "node ."
+    }
+}
