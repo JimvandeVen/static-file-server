@@ -10,10 +10,15 @@
     "bugs": [],
     "author": "Jim van de Ven <jimvandeven_1@hotmail.com>",
     "contributors": [
-      "Jim van de Ven <jimvandeven_1@hotmail.com>",
-      "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
-  ],
-    "dependencies": {},
+        "Jim van de Ven <jimvandeven_1@hotmail.com>",
+        "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+    ],
+    "dependencies": {
+        "fs": "0.0.1-security",
+        "mime-type": "^3.0.5",
+        "mime-types": "^2.1.18",
+        "path": "^0.12.7"
+    },
     "devDependencies": {},
     "scripts": {
         "start": "node ."

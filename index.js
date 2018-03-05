@@ -1,8 +1,11 @@
 /* eslint-disable semi */
 
+/* Read the readme for the sources */
+
 var fs = require('fs')
 var path = require('path')
 var http = require('http')
+var mime = require('mime-types')
 
 var mime = {
     '.html': 'text/html',
@@ -17,35 +20,31 @@ function onrequest(req, res) {
 
     if (route === '/') {
         route = 'index.html'
+
+    } else if (route === "/images") {
+        var extension = path.extname(route)
+        var type = mime[extension] || 'text/html'
+        res.setHeader('Content-Type', type)
+
+        fs.readdir('./static/images/', (err, files) => {
+            for (var i = 0; i < files.length; i++) {
+                res.write("<li>" + files[i] + "</li>")
+            }
+        })
+        res.write("<h1>Dit zijn alle afbeeldingen die er zijn</h1>")
+
+        route = "/imagelist.html"
     }
 
     fs.readFile(path.join('static', route), onread)
 
     function onread(err, buf) {
-        res.setHeader('Content-Type', 'text/html')
-
         if (err) {
             res.statusCode = 404
-            notfound(req.url, res)
+            fs.readFile(path.join('static', '404.html'), onread)
         } else {
-            var extension = path.extname(route)
-            var type = mime[extension] || 'text/plain'
             res.statusCode = 200
-            res.setHeader('Content-Type', type)
             res.end(buf)
         }
     }
 }
-
-
-var notfound = (url, res) =>
-    fs.readFile(path.join('static', '/404.html'), (err, buf) => {
-        if (err) 
-        throw err
-
-        buf.toString()
-
-        res.statusCode = 404
-        res.setHeader('Content-Type', 'text/html')
-        res.end(buf)
-    })
